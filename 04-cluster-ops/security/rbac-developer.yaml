@@ -1,0 +1,37 @@
+# 1. Define the Role (Permissions)
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: default
+  name: junior-dev-role
+rules:
+  # Core Resources: Can view and debug, but not modify infrastructure
+  - apiGroups: [""]
+    resources: ["pods", "pods/log", "services", "configmaps"]
+    verbs: ["get", "list", "watch"]
+  
+  # Troubleshooting: Allow Exec and Port-Forward
+  - apiGroups: [""]
+    resources: ["pods/exec", "pods/portforward"]
+    verbs: ["create"]
+
+  # Apps: Can view Deployments/StatefulSets but NOT delete or scale them
+  - apiGroups: ["apps"]
+    resources: ["deployments", "statefulsets", "daemonsets"]
+    verbs: ["get", "list", "watch"]
+
+---
+# 2. Bind the Role to the User "jane"
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: junior-dev-binding
+  namespace: default
+subjects:
+- kind: User
+  name: jane # This maps to the Common Name (CN) in the certificate
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: junior-dev-role
+  apiGroup: rbac.authorization.k8s.io
