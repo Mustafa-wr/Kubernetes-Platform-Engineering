@@ -1,0 +1,9 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: reference-app-pdb
+spec:
+  minAvailable: 2  # Always keeping 2 pods running during maintenance
+  selector:
+    matchLabels:
+      app: reference-app
