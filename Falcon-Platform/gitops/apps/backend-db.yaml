@@ -11,17 +11,6 @@ spec:
     targetRevision: 15.5.2
     helm:
       values: |
-        primary:
-          persistence:
-            enabled: true
-            storageClass: "standard"
-            size: 8Gi
-          # securityContext required by Kyverno Policy
-          podSecurityContext:
-            enabled: true
-            runAsNonRoot: true
-            runAsUser: 1001
-            fsGroup: 1001
         global:
           postgresql:
             auth:
@@ -33,10 +22,17 @@ spec:
             enabled: true
             storageClass: "standard"
             size: 8Gi
-        containerSecurityContext:
-          enabled: true
-          runAsUser: 1001
-          runAsNonRoot: true
+          # Pod-level security for Kyverno
+          podSecurityContext:
+            enabled: true
+            runAsNonRoot: true
+            runAsUser: 1001
+            fsGroup: 1001
+          # Container-level security for Kyverno
+          containerSecurityContext:
+            enabled: true
+            runAsUser: 1001
+            runAsNonRoot: true
   destination:
     server: https://kubernetes.default.svc
     namespace: team-backend
