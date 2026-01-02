@@ -16,6 +16,12 @@ spec:
         - resources:
             kinds:
             - Pod
+      exclude:
+          any:
+          - resources:
+              namespaces:
+              - local-path-storage  # Allow the storage helper to run
+              - kube-system        # Allow system components to run
       validate:
         message: "Running as root is forbidden. Set securityContext.runAsNonRoot to true."
         pattern:
