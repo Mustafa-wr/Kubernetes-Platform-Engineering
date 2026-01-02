@@ -1,0 +1,4 @@
+# terraform.tfvars
+location     = "uaenorth"
+project_name = "falcon"
+environment  = "dev"
