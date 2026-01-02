@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/YOUR_USERNAME/falcon-platform.git
+    repoURL: https://github.com/mustafa-wr/Kubernetes-Platform-Engineering.git
     targetRevision: main
     path: gitops/apps  # ArgoCD will recursively look inside this folder
   destination:
