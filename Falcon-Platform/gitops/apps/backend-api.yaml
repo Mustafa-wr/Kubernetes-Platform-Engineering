@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: backend-api
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/mustafa-wr/Kubernetes-Platform-Engineering.git
+    path: Falcon-Platform/internal-charts/standard-service
+    targetRevision: main
+    helm:
+      # where the developer "fills in the blanks"
+      values: |
+        replicaCount: 3
+        image: ghcr.io/stefanprodan/podinfo:6.3.5
+        service:
+          port: 9898
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: team-backend # Deploying into our tenant's room
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
