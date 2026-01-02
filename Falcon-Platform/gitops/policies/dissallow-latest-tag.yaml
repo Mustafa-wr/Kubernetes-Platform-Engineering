@@ -1,0 +1,24 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: disallow-latest-tag
+  annotations:
+    policies.kyverno.io/title: Disallow Latest Tag
+    policies.kyverno.io/description: >-
+      The ':latest' tag is mutable and can lead to unexpected changes.
+spec:
+  validationFailureAction: Enforce  # blocking the deployment
+  background: true
+  rules:
+    - name: validate-image-tag
+      match:
+        any:
+        - resources:
+            kinds:
+            - Pod
+      validate:
+        message: "Using 'latest' tag is forbidden. Please specify a version."
+        pattern:
+          spec:
+            containers:
+            - image: "!*:latest"
