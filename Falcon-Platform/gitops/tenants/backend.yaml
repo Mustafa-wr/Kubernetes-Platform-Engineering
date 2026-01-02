@@ -1,0 +1,21 @@
+# The Namespace 
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: team-backend
+  labels:
+    falcon-tenant: backend
+---
+# Resource Quota (The Budget)
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: backend-quota
+  namespace: team-backend
+spec:
+  hard:
+    requests.cpu: "1"
+    requests.memory: 1Gi
+    limits.cpu: "2"
+    limits.memory: 2Gi
+    pods: "10"

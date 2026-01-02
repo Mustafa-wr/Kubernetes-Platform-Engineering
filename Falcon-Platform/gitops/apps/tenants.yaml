@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: falcon-tenants
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/mustafa-wr/Kubernetes-Platform-Engineering.git
+    # the tenants folder
+    path: Falcon-Platform/gitops/tenants
+    targetRevision: main
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
