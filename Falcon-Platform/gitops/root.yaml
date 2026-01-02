@@ -2,17 +2,19 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: falcon-root
-  namespace: argoproj
+  namespace: argocd   # <--- Make sure this is 'argocd', not 'argoproj' (common typo)
 spec:
   project: default
   source:
     repoURL: https://github.com/mustafa-wr/Kubernetes-Platform-Engineering.git
+    
+    path: Falcon-Platform/gitops/apps  
+    
     targetRevision: main
-    path: gitops/apps  # ArgoCD will recursively look inside this folder
   destination:
     server: https://kubernetes.default.svc
-    namespace: argoproj
+    namespace: argocd
   syncPolicy:
     automated:
-      prune: true      
-      selfHeal: true    
+      prune: true
+      selfHeal: true
