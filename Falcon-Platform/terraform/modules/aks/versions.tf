@@ -4,7 +4,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "~> 3.90.0" # This allows 3.90.x but not 4.0 (Safe upgrades)
+      version = ">= 3.100.0" # This allows 3.100.x and above (Safe upgrades)
     }
     random = {
       source  = "hashicorp/random"

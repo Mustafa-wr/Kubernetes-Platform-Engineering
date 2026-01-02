@@ -2,3 +2,4 @@
 location     = "uaenorth"
 project_name = "falcon"
 environment  = "dev"
+subscription_id = "your-azure-subscription-id"
