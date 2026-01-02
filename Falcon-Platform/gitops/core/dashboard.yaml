@@ -4,28 +4,27 @@ metadata:
   name: podinfo-dashboard
   namespace: monitoring
   labels:
-    grafana_dashboard: "1" # This label tells the Grafana sidecar to import it
-spec:
-  data:
-    podinfo-health.json: |-
-      {
-        "title": "Podinfo Health Overview",
-        "panels": [
-          {
-            "title": "CPU Usage (Podinfo)",
-            "type": "timeseries",
-            "gridPos": { "h": 8, "w": 12, "x": 0, "y": 0 },
-            "targets": [
-              { "expr": "sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate{namespace='default', pod=~'podinfo.*'}) by (pod)" }
-            ]
-          },
-          {
-            "title": "Memory Usage (Podinfo)",
-            "type": "timeseries",
-            "gridPos": { "h": 8, "w": 12, "x": 12, "y": 0 },
-            "targets": [
-              { "expr": "sum(container_memory_working_set_bytes{namespace='default', pod=~'podinfo.*'}) by (pod)" }
-            ]
-          }
-        ]
-      }
+    grafana_dashboard: "1"
+data:
+  podinfo-health.json: |-
+    {
+      "title": "Podinfo Health Overview",
+      "panels": [
+        {
+          "title": "CPU Usage (Podinfo)",
+          "type": "timeseries",
+          "gridPos": { "h": 8, "w": 12, "x": 0, "y": 0 },
+          "targets": [
+            { "expr": "sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate{namespace='default', pod=~'podinfo.*'}) by (pod)" }
+          ]
+        },
+        {
+          "title": "Memory Usage (Podinfo)",
+          "type": "timeseries",
+          "gridPos": { "h": 8, "w": 12, "x": 12, "y": 0 },
+          "targets": [
+            { "expr": "sum(container_memory_working_set_bytes{namespace='default', pod=~'podinfo.*'}) by (pod)" }
+          ]
+        }
+      ]
+    }
