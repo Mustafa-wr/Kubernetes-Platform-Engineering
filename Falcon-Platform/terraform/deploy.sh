@@ -41,3 +41,5 @@ echo ""
 echo "Deployment Complete."
 echo "To configure kubectl, run the following command:"
 echo "az aks get-credentials --resource-group falcon-$ENVIRONMENT-rg --name falcon-$ENVIRONMENT-aks"
+
+# az aks get-credentials --resource-group falcon-$ENVIRONMENT-rg --name falcon-$ENVIRONMENT-aks --overwrite-existing
