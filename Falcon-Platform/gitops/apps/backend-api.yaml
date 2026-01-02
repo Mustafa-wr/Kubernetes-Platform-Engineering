@@ -7,18 +7,20 @@ spec:
   project: default
   source:
     repoURL: https://github.com/mustafa-wr/Kubernetes-Platform-Engineering.git
-    path: Falcon-Platform/internal-charts/standard-service
+    path: Falcon-Platform/internal-charts/standard-service # Using your Golden Path chart
     targetRevision: main
     helm:
-      # where the developer "fills in the blanks"
       values: |
         replicaCount: 3
         image: ghcr.io/stefanprodan/podinfo:6.3.5
         service:
           port: 9898
+        env:
+          - name: DB_URL
+            value: "postgresql://falcon_admin:falcon-secure-password@backend-db-postgresql.team-backend.svc.cluster.local:5432/falcon_db"
   destination:
     server: https://kubernetes.default.svc
-    namespace: team-backend # Deploying into our tenant's room
+    namespace: team-backend
   syncPolicy:
     automated:
       prune: true
