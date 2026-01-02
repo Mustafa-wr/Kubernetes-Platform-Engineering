@@ -1,0 +1,6 @@
+apiVersion: v2
+name: standard-service
+description: A Golden Path chart for Falcon Platform developers
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
