@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/mustafa-wr/Kubernetes-Platform-Engineering.git
     
-    path: Falcon-Platform/gitops/apps  
+    path: apps/  
     
     targetRevision: main
   destination:
