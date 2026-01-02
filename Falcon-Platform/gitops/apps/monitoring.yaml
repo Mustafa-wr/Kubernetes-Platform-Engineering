@@ -31,6 +31,7 @@ spec:
               # On Kind, this uses the local-path provisioner
               volumeClaimTemplate:
                 spec:
+                  storageClassName: "standard"
                   accessModes: ["ReadWriteOnce"]
                   resources:
                     requests:
