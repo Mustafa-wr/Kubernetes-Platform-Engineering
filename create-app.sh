@@ -13,7 +13,15 @@ echo ""
 read -p "Enter Application Name (e.g., payment-service): " APP_NAME
 read -p "Enter Docker Image (e.g., ghcr.io/stefanprodan/podinfo:6.3.5): " APP_IMAGE
 read -p "How many replicas? (default: 1): " APP_REPLICAS
-APP_REPLICAS=${APP_REPLICAS:-1} # Default to 1 if empty
+APP_REPLICAS=${APP_REPLICAS:-1}
+
+# Ask for the Team
+echo ""
+echo -e "${BLUE}--- Tenant Selection ---${NC}"
+echo "Available Teams: backend, frontend (coming soon), data"
+read -p "Which team owns this app? (default: backend): " TEAM_NAME
+TEAM_NAME=${TEAM_NAME:-backend}
+NAMESPACE="team-$TEAM_NAME"
 
 # 2. Ask for Vault Integration
 echo ""
@@ -46,7 +54,7 @@ read -p "Do you want to add an Environment Variable? (y/n): " ADD_ENV
 
 ENV_BLOCK=""
 if [[ "$ADD_ENV" == "y" || "$ADD_ENV" == "Y" ]]; then
-    echo "env:" > /tmp/env_block.tmp
+    echo "        env:" > /tmp/env_block.tmp # <--- FIXED
     while [[ "$ADD_ENV" == "y" || "$ADD_ENV" == "Y" ]]; do
         read -p "  Variable Name (e.g., FEATURE_X): " ENV_NAME
         read -p "  Value: " ENV_VALUE
@@ -87,7 +95,7 @@ $ENV_BLOCK
 
   destination:
     server: https://kubernetes.default.svc
-    namespace: team-backend
+    namespace: $NAMESPACE
   syncPolicy:
     automated:
       prune: true
