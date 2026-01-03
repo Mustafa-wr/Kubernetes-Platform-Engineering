@@ -19,5 +19,11 @@ variable "environment" {
 variable "subscription_id" {
   description = "Azure Subscription ID"
   type        = string
-  sensitive   = true # Hides it from output logs
+  sensitive   = true
+}
+
+variable "vault_db_password" {
+  type        = string
+  description = "Password to inject into Vault for the DB"
+  sensitive   = true
 }
