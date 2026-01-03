@@ -17,6 +17,8 @@ resources:
     cpu: 100m
     memory: 128Mi
 
+# placeholder for pod annotations to allow Vault injector and not crash
+podAnnotations: {}
 
 securityContext:
   runAsNonRoot: true

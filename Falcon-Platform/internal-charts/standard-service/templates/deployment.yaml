@@ -14,9 +14,14 @@ spec:
     metadata:
       labels:
         app: {{ .Release.Name }}
+      # Allowing developers to inject Vault config
+      annotations:
+        {{- with .Values.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
     spec:
       securityContext:
-        runAsNonRoot: true # Mandatory by Kyverno Policy
+        runAsNonRoot: true # Mandatory for Kyverno Policy
         runAsUser: 1000
       containers:
         - name: {{ .Release.Name }}
