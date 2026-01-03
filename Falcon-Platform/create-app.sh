@@ -67,7 +67,7 @@ if [[ "$ADD_ENV" == "y" || "$ADD_ENV" == "Y" ]]; then
 fi
 
 # 4. Generate the YAML File
-OUTPUT_FILE="Falcon-Platform/gitops/apps/${APP_NAME}.yaml"
+OUTPUT_FILE="gitops/apps/${APP_NAME}.yaml"
 
 echo ""
 echo -e "${GREEN}Generating manifest at $OUTPUT_FILE...${NC}"
