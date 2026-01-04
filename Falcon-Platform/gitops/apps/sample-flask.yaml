@@ -14,7 +14,7 @@ spec:
         - name: image.repository
           value: 5790bb4d92ab3940083e586c2f2907fb4ec4a86b
         - name: image.tag
-          value: f0e057dead6391ed0e82f14694aebec9c396ffd8
+          value: 9a410aa4d794c18929ce97e5a0a23d8611e7886b
         - name: replicaCount
           value: 5790bb4d92ab3940083e586c2f2907fb4ec4a86b
         - name: service.port
