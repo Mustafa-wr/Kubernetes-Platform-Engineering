@@ -12,15 +12,15 @@ spec:
     helm:
       parameters:
         - name: image.repository
-          value: 039cf5e40aee6de1ef746ebbd10e41aa3c1026db
+          value: 09ca05225016ca64d256e9115e041b59568ef6f1
         - name: image.tag
-          value: 039cf5e40aee6de1ef746ebbd10e41aa3c1026db
+          value: 09ca05225016ca64d256e9115e041b59568ef6f1
         - name: replicaCount
-          value: 039cf5e40aee6de1ef746ebbd10e41aa3c1026db
+          value: 09ca05225016ca64d256e9115e041b59568ef6f1
         - name: service.port
-          value: 039cf5e40aee6de1ef746ebbd10e41aa3c1026db
+          value: 09ca05225016ca64d256e9115e041b59568ef6f1
         - name: service.targetPort
-          value: 039cf5e40aee6de1ef746ebbd10e41aa3c1026db
+          value: 09ca05225016ca64d256e9115e041b59568ef6f1
   destination:
     server: https://kubernetes.default.svc
     namespace: default
