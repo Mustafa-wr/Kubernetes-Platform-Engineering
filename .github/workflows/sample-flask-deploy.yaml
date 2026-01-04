@@ -4,13 +4,19 @@ on:
   push:
     paths:
       - 'sample-flask-app/**'
+      - '.github/workflows/sample-flask-deploy.yaml'
     branches: [main]
+
+permissions:
+  contents: write
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Login to Docker Hub
         run: |
