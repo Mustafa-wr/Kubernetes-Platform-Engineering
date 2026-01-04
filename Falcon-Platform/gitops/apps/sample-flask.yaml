@@ -14,7 +14,7 @@ spec:
         - name: image.repository
           value: mostafawr/sample-flask-app
         - name: image.tag
-          value: e69308ef05f27c5c53bc9dd8603158620b3aac56
+          value: 42e1803935bdd2068c04d6be034bc7ac750dec11
         - name: replicaCount
           value: "2"
         - name: service.port
