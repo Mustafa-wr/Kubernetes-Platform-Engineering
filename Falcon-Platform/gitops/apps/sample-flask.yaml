@@ -12,15 +12,15 @@ spec:
     helm:
       parameters:
         - name: image.repository
-          value: 5790bb4d92ab3940083e586c2f2907fb4ec4a86b
+          value: mostafawr/sample-flask-app
         - name: image.tag
-          value: cd2fc908664981021d0ddd5e3f11ca6f25c17d00
+          value: e69308ef05f27c5c53bc9dd8603158620b3aac56
         - name: replicaCount
-          value: 5790bb4d92ab3940083e586c2f2907fb4ec4a86b
+          value: "2"
         - name: service.port
-          value: 5790bb4d92ab3940083e586c2f2907fb4ec4a86b
+          value: "8080"
         - name: service.targetPort
-          value: 5790bb4d92ab3940083e586c2f2907fb4ec4a86b
+          value: "8080"
   destination:
     server: https://kubernetes.default.svc
     namespace: default
