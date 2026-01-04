@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sample-flask
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/Mustafa-wr/Kubernetes-Platform-Engineering
+    targetRevision: HEAD
+    path: Falcon-Platform/internal-charts/standard-service
+    helm:
+      parameters:
+        - name: image.repository
+          value: mostafawr/sample-flask-app
+        - name: image.tag
+          value: v1.0
+        - name: replicaCount
+          value: "2"
+        - name: service.port
+          value: "8080"
+        - name: service.targetPort
+          value: "8080"
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
