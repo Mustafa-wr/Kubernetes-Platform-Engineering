@@ -25,7 +25,8 @@ spec:
         runAsUser: 1000
       containers:
         - name: {{ .Release.Name }}
-          image: {{ .Values.image }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - containerPort: {{ .Values.service.port }}
           resources:
