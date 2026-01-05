@@ -3,13 +3,13 @@ kind: Kustomization
 
 namespace: dev
 
-# Reference 
 resources:
   - ../../base/backend-api
 
-# 'dev-' prefix to all 
+# Add 'dev-' prefix
 namePrefix: dev-
 
+# dev-specific values
 configMapGenerator:
   - name: backend-api-config
     behavior: merge
@@ -17,11 +17,7 @@ configMapGenerator:
       - ui-color=#00ff00
       - log-level=debug
 
+
 patches:
-  - target:
-      kind: Deployment
-      name: backend-api
-    patch: |-
-      - op: replace
-        path: /spec/replicas
-        value: 1
+  - path: replica-patch.yaml
+  - path: resource-limits-dev.yaml
