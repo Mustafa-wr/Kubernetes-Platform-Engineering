@@ -12,7 +12,7 @@ spec:
     helm:
       parameters:
         - name: image.repository
-          value: mostafawr/sample-flask-app
+          value: mostafawr/sample-flask-app  # will be <acr>.azurecr.io/sample-flask-app in production
         - name: image.tag
           value: f4e322e4473c10b6bced0ab5c88960ac633a4075
         - name: replicaCount
