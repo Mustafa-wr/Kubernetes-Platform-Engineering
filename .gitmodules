@@ -1,0 +1,3 @@
+[submodule "developer-repo"]
+	path = developer-repo
+	url = git@github.com:Mustafa-wr/developer-repo.git
