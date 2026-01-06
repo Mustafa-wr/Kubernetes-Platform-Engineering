@@ -1,42 +1,42 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: backend-db
-  namespace: argocd
-spec:
-  project: default
-  source:
-    repoURL: https://charts.bitnami.com/bitnami
-    chart: postgresql
-    targetRevision: 15.5.2
-    helm:
-      values: |
-        global:
-          postgresql:
-            auth:
-              database: falcon_db
-              username: falcon_admin
-              password: "falcon-secure-password"
-        primary:
-          persistence:
-            enabled: true
-            storageClass: "standard"
-            size: 8Gi
-          # This maps to spec.securityContext (What your Policy demands)
-          podSecurityContext:
-            enabled: true
-            runAsNonRoot: true
-            runAsUser: 1001
-            fsGroup: 1001
-          # This maps to spec.containers.securityContext (Good practice)
-          containerSecurityContext:
-            enabled: true
-            runAsUser: 1001
-            runAsNonRoot: true
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: team-backend
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: backend-db
+#   namespace: argocd
+# spec:
+#   project: default
+#   source:
+#     repoURL: https://charts.bitnami.com/bitnami
+#     chart: postgresql
+#     targetRevision: 15.5.2
+#     helm:
+#       values: |
+#         global:
+#           postgresql:
+#             auth:
+#               database: falcon_db
+#               username: falcon_admin
+#               password: "falcon-secure-password"
+#         primary:
+#           persistence:
+#             enabled: true
+#             storageClass: "standard"
+#             size: 8Gi
+#           # This maps to spec.securityContext (What your Policy demands)
+#           podSecurityContext:
+#             enabled: true
+#             runAsNonRoot: true
+#             runAsUser: 1001
+#             fsGroup: 1001
+#           # This maps to spec.containers.securityContext (Good practice)
+#           containerSecurityContext:
+#             enabled: true
+#             runAsUser: 1001
+#             runAsNonRoot: true
+#   destination:
+#     server: https://kubernetes.default.svc
+#     namespace: team-backend
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
