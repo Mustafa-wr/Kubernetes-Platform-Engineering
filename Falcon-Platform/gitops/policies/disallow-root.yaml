@@ -22,6 +22,8 @@ spec:
               namespaces:
               - local-path-storage  # Allow the storage helper to run
               - kube-system        # Allow system components to run
+            names:
+            - ingress-nginx
       validate:
         message: "Running as root is forbidden. Set securityContext.runAsNonRoot to true."
         pattern:
