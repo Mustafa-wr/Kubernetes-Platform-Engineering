@@ -16,10 +16,20 @@ images:
   newTag: 4878195f163d4c88074505bb500d05d5b2a92a78
 
 patches:
-- patch: |-
-    - op: replace
-      path: /spec/replicas
-      value: 1
-  target:
-    kind: Deployment
-    name: sample-flask
+  - patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: sample-flask
+      spec:
+        template:
+          spec:
+            containers:
+              - name: sample-flask
+                env:
+                  - name: OTEL_SERVICE_NAME
+                    value: sample-flask
+                  - name: OTEL_EXPORTER_OTLP_ENDPOINT
+                    value: http://otel-collector.monitoring:4318
+                  - name: OTEL_EXPORTER_OTLP_PROTOCOL
+                    value: http/protobuf
