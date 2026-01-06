@@ -13,7 +13,7 @@ namePrefix: dev-
 images:
 - name: mostafawr/sample-flask-app
   newName: mostafawr/sample-flask-app
-  newTag: 11346f76003aa8b7065379747218203d06af3835
+  newTag: 4878195f163d4c88074505bb500d05d5b2a92a78
 
 patches:
 - patch: |-
