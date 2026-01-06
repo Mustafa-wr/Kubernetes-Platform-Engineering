@@ -4,21 +4,25 @@ kind: Kustomization
 namespace: dev
 
 resources:
-  - namespace.yaml
-  - ../../base/backend-api
+- namespace.yaml
+- ../../base/backend-api
 
 # Add 'dev-' prefix
 namePrefix: dev-
 
 # dev-specific values
 configMapGenerator:
-  - name: backend-api-config
-    behavior: merge
-    literals:
-      - ui-color=#00ff00
-      - log-level=debug
+- behavior: merge
+  literals:
+  - ui-color=#00ff00
+  - log-level=debug
+  name: backend-api-config
 
 
 patches:
-  - path: replica-patch.yaml
-  - path: resource-limits-dev.yaml
+- path: replica-patch.yaml
+- path: resource-limits-dev.yaml
+images:
+- name: mostafawr/sample-flask-app
+  newName: mostafawr/sample-flask-app
+  newTag: 32b951e7b8bc6157989eda0697a163443fe057b6
