@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: backend-api-dev
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/Mustafa-wr/Kubernetes-Platform-Engineering
+    targetRevision: HEAD
+    path: Falcon-Platform/gitops/environments/overlays/dev
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default #will be set automatically by kustomize
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+

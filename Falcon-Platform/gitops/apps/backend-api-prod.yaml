@@ -1,24 +1,21 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: guestbook
+  name: backend-api-prod
   namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
-    # EXTERNAL repo 
-    repoURL: https://github.com/argoproj/argocd-example-apps.git
+    repoURL: https://github.com/Mustafa-wr/Kubernetes-Platform-Engineering
     targetRevision: HEAD
-    path: guestbook
+    path: Falcon-Platform/gitops/environments/overlays/prod
   destination:
-    # "default" namespace
     server: https://kubernetes.default.svc
-    namespace: default
+    namespace: default #will be set automatically by kustomize
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+
