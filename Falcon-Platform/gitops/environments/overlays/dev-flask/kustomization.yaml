@@ -4,22 +4,22 @@ kind: Kustomization
 namespace: dev
 
 resources:
-  - namespace.yaml
-  - ../../base/sample-flask
+- namespace.yaml
+- ../../base/sample-flask
 
 namePrefix: dev-
 
 # This is where the developer's workflow will update the image
 images:
-  - name: mostafawr/sample-flask-app
-    newName: mostafawr/sample-flask-app
-    newTag: abc123test  # <-- GitHub Actions updates this line
+- name: mostafawr/sample-flask-app
+  newName: mostafawr/sample-flask-app
+  newTag: 11346f76003aa8b7065379747218203d06af3835
 
 patches:
-  - patch: |-
-      - op: replace
-        path: /spec/replicas
-        value: 1
-    target:
-      kind: Deployment
-      name: sample-flask
+- patch: |-
+    - op: replace
+      path: /spec/replicas
+      value: 1
+  target:
+    kind: Deployment
+    name: sample-flask
