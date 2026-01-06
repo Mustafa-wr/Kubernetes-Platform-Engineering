@@ -4,6 +4,7 @@ kind: Kustomization
 namespace: production
 
 resources:
+  - namespace.yaml
   - ../../base/backend-api
 
 namePrefix: prod-
