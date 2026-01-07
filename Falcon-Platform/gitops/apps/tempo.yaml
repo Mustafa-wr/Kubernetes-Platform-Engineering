@@ -22,7 +22,7 @@ data:
       trace:
         backend: local
         local:
-          path: /tmp/tempo/traces
+          path: /var/tempo/traces
     
     compactor:
       compaction:
@@ -65,7 +65,7 @@ spec:
         - name: config
           mountPath: /etc/tempo
         - name: storage
-          mountPath: /tmp/tempo
+          mountPath: /var/tempo
         resources:
           requests:
             cpu: 100m
