@@ -18,7 +18,7 @@ spec:
             enabled: true
   
         injector:
-          enabled: true
+          enabled: true 
   destination:
     server: https://kubernetes.default.svc
     namespace: vault
