@@ -13,23 +13,23 @@ namePrefix: dev-
 images:
 - name: mostafawr/sample-flask-app
   newName: mostafawr/sample-flask-app
-  newTag: 4878195f163d4c88074505bb500d05d5b2a92a78
+  newTag: 93a23f3ed454b585613cf18317e7618e5bcbe738
 
 patches:
-  - patch: |-
-      apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-        name: sample-flask
-      spec:
-        template:
-          spec:
-            containers:
-              - name: sample-flask
-                env:
-                  - name: OTEL_SERVICE_NAME
-                    value: sample-flask
-                  - name: OTEL_EXPORTER_OTLP_ENDPOINT
-                    value: http://otel-collector.monitoring:4318
-                  - name: OTEL_EXPORTER_OTLP_PROTOCOL
-                    value: http/protobuf
+- patch: |-
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: sample-flask
+    spec:
+      template:
+        spec:
+          containers:
+            - name: sample-flask
+              env:
+                - name: OTEL_SERVICE_NAME
+                  value: sample-flask
+                - name: OTEL_EXPORTER_OTLP_ENDPOINT
+                  value: http://otel-collector.monitoring:4318
+                - name: OTEL_EXPORTER_OTLP_PROTOCOL
+                  value: http/protobuf
