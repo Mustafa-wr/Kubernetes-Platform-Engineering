@@ -20,15 +20,15 @@ spec:
       containers:
       - name: sample-flask
         image: mostafawr/sample-flask-app:latest
-        command: ["opentelemetry-instrument"]
+        command: ["/bin/sh"]
         args:
-          - "--traces_exporter=otlp"
-          - "--metrics_exporter=otlp"
-          - "--service_name=sample-flask-app"
-          - "gunicorn"
-          - "--bind=0.0.0.0:8080"
-          - "--workers=2"
-          - "app:app"
+          - -c
+          - |
+            exec opentelemetry-instrument \
+              --traces_exporter=otlp \
+              --metrics_exporter=otlp \
+              --service_name=sample-flask-app \
+              gunicorn --bind=0.0.0.0:8080 --workers=2 app:app
         ports:
         - containerPort: 8080
         resources:
