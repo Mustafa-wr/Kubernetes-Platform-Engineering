@@ -13,13 +13,10 @@ namePrefix: dev-
 images:
 - name: mostafawr/sample-flask-app
   newName: mostafawr/sample-flask-app
-  newTag: 93a23f3ed454b585613cf18317e7618e5bcbe738
+  newTag: a0df3df6e301d74c9e4bbee26f02b23df9d9f30a
 
 patches:
-- target:
-    kind: Deployment
-    name: sample-flask
-  patch: |-
+- patch: |-
     - op: add
       path: /spec/template/spec/containers/0/env
       value:
@@ -29,3 +26,6 @@ patches:
           value: http://otel-collector.monitoring:4318
         - name: OTEL_EXPORTER_OTLP_PROTOCOL
           value: http/protobuf
+  target:
+    kind: Deployment
+    name: sample-flask
