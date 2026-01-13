@@ -1,0 +1,21 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: hello-world-httproute
+spec:
+  parentRefs:
+  - name: hello-world-gateway
+  hostnames:
+  - "hello-world.exposed"
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /
+    # FIXED: backendRefs is now a sibling of matches, not inside it
+    backendRefs:
+    - group: ""
+      kind: Service
+      name: web
+      port: 3000
+      weight: 1

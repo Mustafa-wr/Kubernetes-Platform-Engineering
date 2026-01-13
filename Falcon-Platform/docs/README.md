@@ -1,11 +1,12 @@
 # Falcon Platform Documentation
 
-Comprehensive documentation for the Falcon Platform.
+Comprehensive documentation for the Falcon Platform - a learning project demonstrating Kubernetes platform engineering patterns.
 
 ## Contents
 
 - [Architecture](architecture.md) - Infrastructure design and components
 - [GitOps](gitops.md) - ArgoCD implementation and App of Apps pattern
+- [Kustomization](kustomization.md) - Multi-environment deployment with Kustomize
 - [Policies](policies.md) - Kyverno policy enforcement
 - [Secrets](secrets.md) - HashiCorp Vault integration
 - [Observability](observability.md) - Prometheus and Grafana monitoring

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: date-recorder
+spec:
+  containers:
+  - name: debian
+    image: gcr.io/distroless/nodejs20-debian11
+    command: ["/nodejs/bin/node", "-e", "const fs = require('fs'); let timestamp = Date.now(); fs.writeFile('/root/tmp/startup-marker.txt', timestamp.toString(), err => { if (err) { console.error(err); } while(true) {} });"]
+    volumeMounts:
+    - name: my-csi-inline-vol
+      mountPath: /var/startup
+  volumes:
+    - name: my-csi-inline-vol
+      emptyDir: {}
