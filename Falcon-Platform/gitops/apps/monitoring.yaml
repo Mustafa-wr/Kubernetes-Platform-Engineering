@@ -17,6 +17,20 @@ spec:
           adminPassword: "admin" # dummy password for demo purposes
           ingress:
             enabled: false # port-forwarding for now
+          datasources:
+            datasources.yaml:
+              apiVersion: 1
+              datasources:
+              - name: Prometheus
+                type: prometheus
+                url: http://prometheus-monitoring-kube-prometheus-prometheus:9090
+                access: proxy
+                isDefault: true
+              - name: Tempo
+                type: tempo
+                url: http://tempo:3200
+                access: proxy
+                isDefault: false
         prometheus:
           prometheusSpec:
             resources:
